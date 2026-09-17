@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TP02 - Web3D</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background: #101815;
+      color: #eef3ef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px;
+    }
+    h1 { margin-bottom: 4px; }
+    .subtitle { color: #9fb3a6; margin-top: 0; margin-bottom: 32px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      max-width: 920px;
+      width: 100%;
+    }
+    .card {
+      background: #17221d;
+      border: 1px solid #26362d;
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #3fae63;
+    }
+    .card h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.05rem;
+      color: #9fe6b0;
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      color: #cdd9d2;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #6d8577;
+    }
+    footer a { color: #9fe6b0; }
+  </style>
+</head>
+<body>
+  <h1>ST2AWD — TP02 Web3D</h1>
+  <p class="subtitle">A-Frame · déplacement de personnage · caméra orbitale · physique</p>
+
+  <div class="grid">
+    <a class="card" href="exercices/exercice1.html">
+      <h2>Exercice 1 — Plan &amp; Skybox</h2>
+      <p>Un sol texturé "herbe" et un skybox panoramique pour habiller la scène.</p>
+    </a>
+    <a class="card" href="exercices/exercice2.html">
+      <h2>Exercice 2 — Déplacement du cube</h2>
+      <p>Déplacement WASD avec accélération/décélération progressives et saut.</p>
+    </a>
+    <a class="card" href="exercices/exercice3.html">
+      <h2>Exercice 3 — Caméra orbitale</h2>
+      <p>La caméra suit le cube et s'oriente à la souris, avec zoom et limites d'angle.</p>
+    </a>
+    <a class="card" href="exercices/exercice4.html">
+      <h2>Exercice 4 — Déplacement relatif à la caméra</h2>
+      <p>Le cube se déplace désormais selon l'orientation actuelle de la caméra.</p>
+    </a>
+    <a class="card" href="exercices/exercice5.html">
+      <h2>Exercice 5 — Physique (aframe-physics-system)</h2>
+      <p>Déplacement et saut gérés par un vrai moteur physique (cannon.js).</p>
+    </a>
+    <a class="card" href="exercices/exercice6.html">
+      <h2>Exercice 6 — Collisions</h2>
+      <p>Plusieurs cubes physiques autour du joueur pour tester les collisions.</p>
+    </a>
+  </div>
+
+  <footer>Voir le <a href="README.md">README</a> pour le détail pédagogique de chaque exercice.</footer>
+</body>
+</html>

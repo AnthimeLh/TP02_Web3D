@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercice 4 - Déplacement relatif à la caméra</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="../js/wasd-jump-movement.js"></script>
+  <script src="../js/orbit-camera.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="hud">
+    <h1>Exercice 4 — Déplacement relatif à la caméra</h1>
+    <ul>
+      <li><kbd>W</kbd> : avancer dans la direction regardée par la caméra</li>
+      <li><kbd>A</kbd> / <kbd>D</kbd> : se déplacer à gauche / droite de la caméra</li>
+      <li><kbd>S</kbd> : reculer</li>
+      <li><kbd>Espace</kbd> : sauter</li>
+      <li>Clic gauche + glisser / molette : orbiter / zoomer</li>
+    </ul>
+    <p>Orbitez la caméra puis avancez avec <kbd>W</kbd> : le cube suit désormais la direction de vue.</p>
+    <a class="back-link" href="../index.html">&larr; Retour au sommaire</a>
+  </div>
+
+  <a-scene>
+    <a-assets>
+      <img id="grassTexture" src="../assets/textures/grass.jpg" crossorigin="anonymous" />
+      <img id="skyTexture" src="../assets/textures/sky.jpg" crossorigin="anonymous" />
+    </a-assets>
+
+    <a-plane
+      src="#grassTexture"
+      rotation="-90 0 0"
+      width="200"
+      height="200"
+      repeat="40 40"
+      shadow="receive: true"
+    ></a-plane>
+    <a-sky src="#skyTexture" rotation="0 -90 0"></a-sky>
+
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: directional; intensity: 0.8; castShadow: true" position="3 6 2"></a-entity>
+
+    <a-box
+      id="player"
+      wasd-jump-movement="speed: 3.2; acceleration: 10; deceleration: 12; jumpForce: 6; groundY: 0.5; cameraRelative: true; cameraEl: #mainCamera"
+      position="0 0.5 0"
+      width="1" height="1" depth="1"
+      color="#2e86de"
+      shadow
+    ></a-box>
+
+    <a-entity
+      id="mainCamera"
+      camera
+      orbit-camera="target: #player; distance: 6; minDistance: 2.5; maxDistance: 14; minPolarDeg: 5; maxPolarDeg: 90"
+    ></a-entity>
+  </a-scene>
+</body>
+</html>

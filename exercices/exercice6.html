@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercice 6 - Système de collisions</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.0.2/dist/aframe-physics-system.js"></script>
+  <script src="../js/orbit-camera.js"></script>
+  <script src="../js/physics-movement.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="hud">
+    <h1>Exercice 6 — Collisions entre cubes</h1>
+    <ul>
+      <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> : déplacer le cube principal</li>
+      <li><kbd>Espace</kbd> : sauter</li>
+      <li>Clic gauche + glisser / molette : orbiter / zoomer la caméra</li>
+    </ul>
+    <p>Foncez dans les cubes autour de vous : ils ont tous un <code>dynamic-body</code> et réagissent de façon réaliste aux impacts (poussée, rebond, friction).</p>
+    <a class="back-link" href="../index.html">&larr; Retour au sommaire</a>
+  </div>
+
+  <a-scene physics="gravity: -9.8; debug: false">
+    <a-assets>
+      <img id="grassTexture" src="../assets/textures/grass.jpg" crossorigin="anonymous" />
+      <img id="skyTexture" src="../assets/textures/sky.jpg" crossorigin="anonymous" />
+    </a-assets>
+
+    <!-- Sol physique : a-box fin (voir exercice 5 pour l'explication). -->
+    <a-box
+      src="#grassTexture"
+      position="0 -0.1 0"
+      width="200"
+      height="0.2"
+      depth="200"
+      repeat="40 40"
+      shadow="receive: true"
+      static-body="shape: box"
+    ></a-box>
+    <a-sky src="#skyTexture" rotation="0 -90 0"></a-sky>
+
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: directional; intensity: 0.8; castShadow: true" position="3 6 2"></a-entity>
+
+    <a-box
+      id="player"
+      physics-movement="speed: 3; jumpForce: 5.5"
+      dynamic-body="shape: box; mass: 5; linearDamping: 0.4; angularDamping: 0.9"
+      position="0 3 0"
+      width="1" height="1" depth="1"
+      color="#2e86de"
+      shadow
+    ></a-box>
+
+    <!-- Cubes secondaires : mêmes propriétés physiques que le joueur, disposés
+         en cercle autour de lui pour tester les collisions dans toutes les
+         directions. -->
+    <a-box position="3 1.5 0"  width="1" height="1" depth="1" color="#e67e22" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+    <a-box position="-3 1.5 0" width="1" height="1" depth="1" color="#e74c3c" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+    <a-box position="0 1.5 3"  width="1" height="1" depth="1" color="#9b59b6" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+    <a-box position="0 1.5 -3" width="1" height="1" depth="1" color="#16a085" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+    <a-box position="2.2 1.5 2.2"  width="1" height="1" depth="1" color="#f1c40f" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+    <a-box position="-2.2 1.5 -2.2" width="1" height="1" depth="1" color="#2ecc71" shadow dynamic-body="shape: box; mass: 3; linearDamping: 0.4; angularDamping: 0.5"></a-box>
+
+    <a-entity
+      id="mainCamera"
+      camera
+      orbit-camera="target: #player; distance: 8; minDistance: 3; maxDistance: 18; minPolarDeg: 5; maxPolarDeg: 90"
+    ></a-entity>
+  </a-scene>
+</body>
+</html>

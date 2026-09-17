@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercice 2 - Déplacement du cube</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="../js/wasd-jump-movement.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="hud">
+    <h1>Exercice 2 — Déplacement du joueur</h1>
+    <ul>
+      <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> : déplacer le cube (diagonales possibles)</li>
+      <li><kbd>Espace</kbd> : sauter (seulement au sol)</li>
+    </ul>
+    <p>Accélération/décélération progressives, direction fixe (indépendante de la caméra).</p>
+    <a class="back-link" href="../index.html">&larr; Retour au sommaire</a>
+  </div>
+
+  <a-scene>
+    <a-assets>
+      <img id="grassTexture" src="../assets/textures/grass.jpg" crossorigin="anonymous" />
+      <img id="skyTexture" src="../assets/textures/sky.jpg" crossorigin="anonymous" />
+    </a-assets>
+
+    <a-plane
+      src="#grassTexture"
+      rotation="-90 0 0"
+      width="200"
+      height="200"
+      repeat="40 40"
+      shadow="receive: true"
+    ></a-plane>
+    <a-sky src="#skyTexture" rotation="0 -90 0"></a-sky>
+
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: directional; intensity: 0.8; castShadow: true" position="3 6 2"></a-entity>
+
+    <!-- Cube joueur : posé exactement sur le plan (y = moitié de sa hauteur) -->
+    <a-box
+      id="player"
+      wasd-jump-movement="speed: 3.2; acceleration: 10; deceleration: 12; jumpForce: 6; groundY: 0.5"
+      position="0 0.5 0"
+      width="1" height="1" depth="1"
+      color="#2e86de"
+      shadow
+    >
+      <!-- Caméra "enfant" du cube : offset fixe, suit donc la position du joueur -->
+      <a-entity camera position="0 3.5 6" rotation="-25 0 0"></a-entity>
+    </a-box>
+  </a-scene>
+</body>
+</html>
